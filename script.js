@@ -39,6 +39,10 @@ function createTags(input) {
  * @param {*} tag to highlight 
  */
 function highlightTag(tag) {
+  if(tag === undefined){
+    return;
+  }
+
   tag.classList.add('highlight');
 }
 
@@ -48,6 +52,10 @@ function highlightTag(tag) {
  * @param {*} tag tag to remove highlight
  */
 function removeHighlightTag(tag) {
+  if(tag === undefined){
+    return;
+  }
+  
   tag.classList.remove('highlight');
 }
 
