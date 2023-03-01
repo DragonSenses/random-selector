@@ -1,6 +1,8 @@
 # random-selector
  A simple random choice selector. Chooses randomly between comma-delimited choices user types into the text area.
 
+[Live Demo](https://ephemeral-caramel-547ca9.netlify.app/)
+
 # Description
 
 I have an eager interest in the theoretical concept of randomness and its applications, such as PRNG (Pseudo Random Number Generators).
@@ -37,6 +39,8 @@ Note: Must run a live server since modules only work via HTTP(s), not locally.
 - [x] Have choices update dynamically below as tags
 - [x] Button that initiates tha random selection
 - [x] Highlight the selected choice
+- [x] Mobile Ready
+- [x] Responsive Design
 
 ## Notes on making this
 
