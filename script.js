@@ -1,5 +1,10 @@
+import { MersenneTwister } from "./modules/mersenne.js";
+
 const tagsElem = document.getElementById("tags");
 const textArea = document.querySelector("#textarea");
+
+/* Pseudo-Random Number Generator */
+const PRNG = new MersenneTwister();
 
 /* Automatically focus on text area, puts cursor within and 
 user can start typing */
@@ -18,7 +23,6 @@ function createTags(input) {
          .filter(tag => tag.trim() !== '')
          .map(tag => tag.trim());
 
-  console.log(tags);
   tagsElem.innerHTML = '';
 
   /* Add tags into HTML */
@@ -54,16 +58,16 @@ function removeHighlightTag(tag) {
 function pickRandomTag() {
   /* Get the node list of tags */
   const tags = document.querySelectorAll('.tag');
-  /* Select a random index */
-  return tags[0];
+  /* Select a node tag from a random index */
+  return tags[Math.floor(PRNG.random() * tags.length)];
 }
 
 /**
  * Randomly selects a tag. Highlights tags until the last choice is selected. 
  */
 function selectRandom(){
-  const highlightInstances = 20; 
-  const highlightTime = 100;   // in milliseconds
+  const highlightInstances = 35; 
+  const highlightTime = 90;   // in milliseconds
 
   /* The highlight animation that demonstrates the illusion of choice */
   const interval = setInterval(() => {
@@ -96,11 +100,14 @@ textArea.addEventListener('keyup', (e) => {
 
   /* Check if user hits 'Enter' key */
   if(e.key === 'Enter') {
+    /* Error checking - if text area is empty and user presses Enter */
+    if(document.querySelectorAll('.tag').length == 0) { return false; }
+
     /* Clear the input after some time */
     setTimeout( () => {
       e.target.value = '';
     }, 10);
-    
+  
     selectRandom();
   }
 });
